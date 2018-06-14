@@ -19,6 +19,19 @@ class IdentityLink(Link):
         return x
 
 
+class LogLink(Link):
+    def __str__(self):
+        return "log"
+
+    @staticmethod
+    def f(x):
+        return np.log(x)
+
+    @staticmethod
+    def finv(x):
+        return np.exp(x)
+
+
 class LogitLink(Link):
     def __str__(self):
         return "logit"
@@ -39,5 +52,7 @@ def convert_to_link(val):
         return IdentityLink()
     elif val == "logit":
         return LogitLink()
+    elif val == "log":
+        return LogLink()
     else:
         assert False, "Passed link object must be a subclass of iml.Link"
